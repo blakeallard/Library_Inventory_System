@@ -1,5 +1,7 @@
 #ifndef SHELF_H_
 #define SHELF_H_
+#include <memory>
+using std::make_unique, std::unique_ptr;
 
 const int NUM_COMPARTS = 15;
 
@@ -11,8 +13,7 @@ class Compartment;
 class Shelf 
 {
 private:
-    Compartment* compartments[NUM_COMPARTS];
-
+    unique_ptr<Compartment> compartments[NUM_COMPARTS];
 
 public:
     Shelf();

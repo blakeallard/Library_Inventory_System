@@ -2,9 +2,9 @@
 
 Item::Item()
 {
-    name = "";
+    name     = "";
     descript = "";
-    id = 0;
+    id       = 0;
 }
 
 void Item::display() const 

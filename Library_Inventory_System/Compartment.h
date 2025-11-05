@@ -1,7 +1,8 @@
 #ifndef COMPARTMENT_H_
 #define COMPARTMENT_H_
 #include <string>
-using std::string;
+#include <memory>
+using std::string, std::make_unique, std::unique_ptr;
 
 
 // Forward declaration
@@ -11,13 +12,17 @@ class Item;
 class Compartment
 {
 private:
-    Item* item;
+    unique_ptr<Item> item;
     string checkedOutBy{};
     string dueDate{};
 
-
 public:
     Compartment();
+    void AddItem();
+    void RemoveItem();
+    void CheckOut();
+    void CheckIn();
+    bool IsEmpty();
     ~Compartment();
 
 };

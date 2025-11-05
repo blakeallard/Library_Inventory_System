@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-using std::string;
+using std::string, std::ostream;
 
 class Item 
 {
@@ -15,8 +15,21 @@ private:
 public:
     Item();
 
+    void setName(const string& name) { this->name = name; }
+    string getName() { return name; }
+
+    
+    void setDescript(const string& descript) { this->descript = descript; }
+    string getDescript() { return descript; }
+
+    
+    void setID(int id) { this->id = id; }
+    int getID() { return id; }
+
+    ostream& operator<<(ostream& stream);
+
     virtual void display() const;
-    ~Item();
+    virtual ~Item();
     
 };
 
