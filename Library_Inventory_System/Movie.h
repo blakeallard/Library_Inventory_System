@@ -2,18 +2,21 @@
 #define MOVIE_H_ 
 
 #include "Item.h"
-
+#include <string>
+#include <vector>
+using std::string, std::vector;
 
 class Movie : public Item
 {
 private:
     string title{};
     string director{};
-    string mainActors{};
+    vector<string> mainActors{};
 
 public:
     Movie();
-
+    Movie(const string& title, const string& director, const string& mainActors);
+    
     void display() const; 
     ~Movie();
 

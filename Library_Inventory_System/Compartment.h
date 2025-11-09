@@ -18,7 +18,7 @@ private:
 
 public:
     Compartment();
-    void AddItem();
+    void AddItem(const Item& newItem);
     void RemoveItem();
     void CheckOut();
     void CheckIn();

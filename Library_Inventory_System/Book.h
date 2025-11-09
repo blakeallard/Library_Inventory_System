@@ -14,6 +14,8 @@ private:
 
 public:
     Book();
+    Book(const string& title, const string& author, const string& crDate);
+    
     void display() const override;
     ~Book();
 };

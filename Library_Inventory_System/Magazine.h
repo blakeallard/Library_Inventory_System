@@ -12,6 +12,7 @@ private:
 
 public:
     Magazine();
+    Magazine(const string& edition, const string& artTitle);
 
     void display() const;
     ~Magazine();

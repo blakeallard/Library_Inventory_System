@@ -1,24 +1,26 @@
 #ifndef SHELF_H_
 #define SHELF_H_
+#include "Compartment.h"
 #include <memory>
-using std::make_unique, std::unique_ptr;
+#include <iostream>
+#include <stdexcept>
+using std::make_unique, std::unique_ptr, std::ostream, std::out_of_range;
 
-const int NUM_COMPARTS = 15;
 
 
 // Forward declaration
-class Compartment;
-  
+class Item;
 
-class Shelf 
+
+class Shelf
 {
 private:
-    unique_ptr<Compartment> compartments[NUM_COMPARTS];
+    static const int NUM_COMPARTS = 15;
+    Compartment compartments[NUM_COMPARTS];
 
 public:
     Shelf();
-    ~Shelf();
-    
+    Compartment& operator[](int index);
 };
 
 #endif  // FILENAME_H

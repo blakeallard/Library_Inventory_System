@@ -1,10 +1,15 @@
 #include "Shelf.h"
-#include "Compartment.h"
 
 Shelf::Shelf()
 {
-    for (int i = 0; i < NUM_COMPARTS; i++)
+    
+}
+
+Compartment& Shelf::operator[](int index)
+{
+    if (index < 0 || index >= NUM_COMPARTS)
     {
-        compartments[i] = make_unique<Compartment>();
+        throw out_of_range("Compartment index is out of range.\n");
     }
+    return compartments[index];
 }

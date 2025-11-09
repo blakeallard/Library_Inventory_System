@@ -4,11 +4,13 @@
 
 Compartment::Compartment()
 {
-    item = make_unique<Item>();
+    item         = nullptr;
+    checkedOutBy = "";
+    dueDate      = "";
 }
 
 
-void Compartment::AddItem()
+void Compartment::AddItem(const Item& newItem)
 {
 
 }
@@ -29,5 +31,5 @@ void Compartment::CheckIn()
 
 bool Compartment::IsEmpty()
 {
-
+    return item == nullptr;
 }

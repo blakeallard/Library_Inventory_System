@@ -4,7 +4,7 @@ Movie::Movie()
 {
     title      = "";
     director   = "";
-    mainActors = "";
+    mainActors = {};
 }
 
 void Movie::display() const
