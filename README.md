@@ -1,4 +1,3 @@
-# Library_Inventory_System
 # Library Inventory System
 
 Library Inventory System is a C++ console project that models a physical library’s storage. It demonstrates inheritance, polymorphism, operator overloading, and value semantics for a collection of items stored on shelves, checked in/out by patrons, and reported through the CLI.
