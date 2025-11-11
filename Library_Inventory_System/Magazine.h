@@ -3,17 +3,17 @@
 #include "Item.h"
 
 
-class Magazine 
+class Magazine : public Item 
 {
 private:
     string edition{};
     string artTitle{};
 
-
 public:
     Magazine();
     Magazine(const string& edition, const string& artTitle);
 
+    virtual unique_ptr<Item> CreateItem() const override;
     void display() const;
     ~Magazine();
     

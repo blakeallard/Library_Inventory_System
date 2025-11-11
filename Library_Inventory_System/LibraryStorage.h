@@ -14,6 +14,7 @@ private:
     vector<Shelf> shelves{};
 
 public:
+    static const int NUM_SHELVES = 12;
     // Default constructor initializes shelves vector 
     // with NUM_SHELVES Shelf objects
     LibraryStorage();
@@ -26,8 +27,8 @@ public:
     void CheckInItem();
     void CheckOutItem();
     void SwapItems();
-    void PrintStorage();
-    void PrintCheckedOutItems();
+    void PrintStorage() const;
+    void PrintCheckedOutItems() const;
     Shelf& operator[](int index);
 };
 

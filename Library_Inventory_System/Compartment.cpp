@@ -19,12 +19,12 @@ void Compartment::RemoveItem()
 
 }
 
-void Compartment::CheckOut()
+void Compartment::CheckIn()
 {
 
 }
 
-void Compartment::CheckIn()
+void Compartment::CheckOut()
 {
 
 }

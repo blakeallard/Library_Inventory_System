@@ -14,13 +14,14 @@ class Item;
 
 class Shelf
 {
-private:
-    static const int NUM_COMPARTS = 15;
-    Compartment compartments[NUM_COMPARTS];
-
 public:
+    static const int NUM_COMPARTS = 15;
     Shelf();
     Compartment& operator[](int index);
+    ostream& operator=(ostream& stream) const;
+
+private:
+    Compartment compartments[NUM_COMPARTS];
 };
 
 #endif  // FILENAME_H

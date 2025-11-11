@@ -15,8 +15,9 @@ private:
 
 public:
     Movie();
-    Movie(const string& title, const string& director, const string& mainActors);
+    Movie(const string& title, const string& director, const vector<string>& mainActors);
     
+    virtual unique_ptr<Item> CreateItem() const;
     void display() const; 
     ~Movie();
 

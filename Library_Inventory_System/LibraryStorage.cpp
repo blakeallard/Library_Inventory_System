@@ -5,7 +5,10 @@
 
 LibraryStorage::LibraryStorage()
 {
-
+    for (int i = 0; i < NUM_SHELVES; i++)
+    {
+        shelves.push_back(Shelf());
+    }
 }
 
 // in order to add items to shelves, 
@@ -17,7 +20,7 @@ void LibraryStorage::AddItem(int shelfIndex, int compartmentIndex, const Item& i
         throw out_of_range("Shelf index out of range");
     }
     
-    if (compartmentIndex < 0 || compartmentIndex >= NUM_COMPARTS)
+    if (compartmentIndex < 0 || compartmentIndex >= Shelf::NUM_COMPARTS)
     {
         throw out_of_range("Compartment index out of range");
     }
@@ -47,12 +50,12 @@ void LibraryStorage::SwapItems()
 
 }
 
-void LibraryStorage::PrintStorage()
+void LibraryStorage::PrintStorage() const
 {
 
 }
 
-void LibraryStorage::PrintCheckedOutItems()
+void LibraryStorage::PrintCheckedOutItems() const
 {
 
 }

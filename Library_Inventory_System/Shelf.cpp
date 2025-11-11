@@ -2,7 +2,10 @@
 
 Shelf::Shelf()
 {
-    
+    for (int i = 0; i < NUM_COMPARTS; ++i)
+    {
+        compartments[i] = Compartment();
+    }
 }
 
 Compartment& Shelf::operator[](int index)

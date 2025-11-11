@@ -20,8 +20,8 @@ public:
     Compartment();
     void AddItem(const Item& newItem);
     void RemoveItem();
-    void CheckOut();
     void CheckIn();
+    void CheckOut();
     bool IsEmpty();
     ~Compartment();
 
