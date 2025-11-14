@@ -6,17 +6,15 @@
 class Magazine : public Item 
 {
 private:
-    string edition{};
+    int edition{};
     string artTitle{};
 
 public:
-    Magazine();
-    Magazine(const string& edition, const string& artTitle);
+    Magazine(const string& descript, const string& id,
+             int edition, const string& artTitle);
 
-    virtual unique_ptr<Item> CreateItem() const override;
-    void display() const;
-    ~Magazine();
-    
+    unique_ptr<Item> CreateItem() const override;
+    void display(ostream& os) const override;
 };
 
 #endif  // MAGAZINE_H_

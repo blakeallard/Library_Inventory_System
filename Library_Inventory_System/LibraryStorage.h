@@ -2,10 +2,9 @@
 #define LIBRARY_STORAGE_H_
 #include "Shelf.h"
 #include <iostream>
+#include <memory>
 #include <vector>
-using std::cout, std::vector, std::out_of_range;
-
-
+using std::cout, std::vector, std::out_of_range, std::move, std::unique_ptr, std::endl;
 
 
 class LibraryStorage 
@@ -21,12 +20,12 @@ public:
 
     // in order to add items to shelves, 
     // must know which shelf index and compartment index
-    void AddItem(int shelfIndex, int compartmentIndex, const Item& item);
+    bool AddItem(int shelfIndex, int compartmentIndex, unique_ptr<Item> item);
 
 
-    void CheckInItem();
-    void CheckOutItem();
-    void SwapItems();
+    bool CheckInItem(int shelfIndex, int compartmentIndex);
+    bool CheckOutItem(int shelfIndex, int compartmentIndex, const string& borrowerName, const string& dueDate);
+    void SwapItems(int shelfIndex1, int compartmentIndex1, int shelfIndex2, int compartmentIndex2);
     void PrintStorage() const;
     void PrintCheckedOutItems() const;
     Shelf& operator[](int index);

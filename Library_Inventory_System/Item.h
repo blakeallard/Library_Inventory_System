@@ -18,11 +18,11 @@ public:
     string getName() const; 
     void   setDescript(const string& descript);
     string getDescript() const;
-    void   setID(int id);
-    int    getID() const;
+    void   setID(const string& id);
+    string getID() const;
 
     virtual unique_ptr<Item> CreateItem() const = 0;
-    virtual void display() const = 0;
+    virtual void display(ostream& os) const;
     virtual ~Item();
 
     friend ostream& operator<<(ostream& stream, const Item& item);

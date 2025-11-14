@@ -12,12 +12,11 @@ private:
     string crDate{};
 
 public:
-    Book();
-    Book(const string& title, const string& author, const string& crDate);
+    Book(const string& descript, const string& id,
+         const string& title, const string& author, const string& crDate);
     
     unique_ptr<Item>CreateItem() const override;
-    void display() const override;
-    ~Book();
+    void display(ostream& os) const override;
 };
 
 #endif  // FILENAME_H
