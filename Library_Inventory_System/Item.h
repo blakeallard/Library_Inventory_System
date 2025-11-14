@@ -3,34 +3,29 @@
 #include <iostream>
 #include <memory>
 #include <string>
-using std::string, std::ostream, std::unique_ptr, std::make_unique;
+using std::string, std::ostream, std::unique_ptr, std::make_unique, std::cout;
 
 class Item 
 {
-private:
+protected:
     string name{};
     string descript{};
-    int    id{};
+    string id{};
 
 public:
-    Item();
-
-    void setName(const string& name);
+    Item(const string& name, const string& descript, const string& id);
+    void   setName(const string& name);
     string getName() const; 
-
-    
-    void setDescript(const string& descript);
+    void   setDescript(const string& descript);
     string getDescript() const;
-
-    
-    void setID(int id);
-    int getID() const;
-
-    friend ostream& operator<<(ostream& stream, const Item& item);
+    void   setID(int id);
+    int    getID() const;
 
     virtual unique_ptr<Item> CreateItem() const = 0;
     virtual void display() const = 0;
     virtual ~Item();
+
+    friend ostream& operator<<(ostream& stream, const Item& item);
 };
 
 #endif  //ITEM_H_

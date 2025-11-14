@@ -14,7 +14,6 @@ private:
     vector<string> mainActors{};
 
 public:
-    Movie();
     Movie(const string& title, const string& director, const vector<string>& mainActors);
     
     virtual unique_ptr<Item> CreateItem() const;

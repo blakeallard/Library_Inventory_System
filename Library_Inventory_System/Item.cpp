@@ -1,10 +1,10 @@
 #include "Item.h"
 
-Item::Item()
+Item::Item(const string& name, const string& descript, const string& id)
 {
-    name     = "";
-    descript = "";
-    id       = 0;
+    this->name     = name;
+    this->descript = descript;
+    this->id       = id;
 }
 
 void Item::setName(const string& name) { this->name = name; }

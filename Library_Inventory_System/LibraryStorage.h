@@ -14,7 +14,7 @@ private:
     vector<Shelf> shelves{};
 
 public:
-    static const int NUM_SHELVES = 12;
+    static const int NUM_SHELVES = 12; // tentative depending on how many shelves
     // Default constructor initializes shelves vector 
     // with NUM_SHELVES Shelf objects
     LibraryStorage();

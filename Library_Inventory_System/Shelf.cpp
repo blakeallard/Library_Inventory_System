@@ -1,12 +1,6 @@
 #include "Shelf.h"
 
-Shelf::Shelf()
-{
-    for (int i = 0; i < NUM_COMPARTS; ++i)
-    {
-        compartments[i] = Compartment();
-    }
-}
+Shelf::Shelf() {}
 
 Compartment& Shelf::operator[](int index)
 {

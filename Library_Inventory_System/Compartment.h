@@ -18,13 +18,13 @@ private:
 
 public:
     Compartment();
-    void AddItem(const Item& newItem);
+    void AddItem();
     void RemoveItem();
     void CheckIn();
     void CheckOut();
-    bool IsEmpty();
+    bool IsEmpty() const;
+    bool isValidID(const string& id) const;
     ~Compartment();
-
 };
 
 #endif  // FILENAME_H

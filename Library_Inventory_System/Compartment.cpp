@@ -22,6 +22,7 @@ void Compartment::RemoveItem()
 void Compartment::CheckIn()
 {
 
+
 }
 
 void Compartment::CheckOut()
@@ -29,7 +30,7 @@ void Compartment::CheckOut()
 
 }
 
-bool Compartment::IsEmpty()
+bool Compartment::IsEmpty() const
 {
     return item == nullptr;
 }

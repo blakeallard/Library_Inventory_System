@@ -1,10 +1,18 @@
 #include "Movie.h"
 
-Movie::Movie()
+
+Movie::Movie(const string& title, const string& director, const vector<string>& mainActors)
+    : Item(name, descript, id)
 {
-    title      = "";
-    director   = "";
-    mainActors = {};
+    this->title      = title;
+    this->director   = director;
+    this->mainActors = mainActors;
+}
+
+
+bool Movie::isValidMovieID(const string& id) const
+{
+
 }
 
 void Movie::display() const
@@ -19,5 +27,4 @@ unique_ptr<Item> Movie::CreateItem() const
 
 Movie::~Movie()
 {
-
 }
