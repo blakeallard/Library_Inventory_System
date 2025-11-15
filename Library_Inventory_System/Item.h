@@ -21,7 +21,7 @@ public:
     void   setID(const string& id);
     string getID() const;
 
-    virtual unique_ptr<Item> CreateItem() const = 0;
+    // virtual unique_ptr<Item> CreateItem() const = 0;
     virtual void display(ostream& os) const;
     virtual ~Item();
 

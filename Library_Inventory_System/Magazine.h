@@ -15,7 +15,7 @@ public:
              const string& descript,
              int edition);
 
-    unique_ptr<Item> CreateItem() const override;
+    //unique_ptr<Item> CreateItem() const override;
     void display(ostream& os) const override;
 };
 

@@ -185,6 +185,15 @@ Shelf& LibraryStorage::operator[](int index)
     return shelves[index];
 }
 
+const Shelf& LibraryStorage::operator[](int index) const
+{
+    if (index < 0 || index >= shelves.size())
+    {
+        throw out_of_range("Shelf index out of range");
+    }
+    return shelves[index];
+}
+
 void LibraryStorage::InitSampleData(LibraryStorage &libraryInventory)
 {
     libraryInventory.AddItem(0, 0, make_unique<Book>("The Great Gatsby", 

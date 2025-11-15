@@ -18,7 +18,7 @@ void Book::display(ostream& os) const
     os << "Creation Date: " << crDate << "\n";
 }
 
-unique_ptr<Item> Book::CreateItem() const
-{
-    return make_unique<Book>(*this);
-}
+//unique_ptr<Item> Book::CreateItem() const
+// {
+//     return make_unique<Book>(*this);
+// }

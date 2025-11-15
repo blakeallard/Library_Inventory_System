@@ -16,7 +16,7 @@ void Magazine::display(ostream& os) const
     os << "Article Title: " << artTitle << "\n";
 }
 
-unique_ptr<Item> Magazine::CreateItem() const
-{
-    return make_unique<Magazine>(*this);
-}
+// unique_ptr<Item> Magazine::CreateItem() const
+// {
+//     return make_unique<Magazine>(*this);
+// }

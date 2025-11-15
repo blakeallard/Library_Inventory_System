@@ -20,7 +20,7 @@ public:
           const string& descript, 
           const vector<string>& mainActors);
     
-    unique_ptr<Item> CreateItem() const override;
+    //unique_ptr<Item> CreateItem() const override;
 
     void display(ostream& os) const override; 
 };

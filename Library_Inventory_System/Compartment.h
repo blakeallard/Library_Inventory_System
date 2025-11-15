@@ -38,8 +38,10 @@ public:
     Compartment(Compartment&& other) = default;
     Compartment& operator=(Compartment&& other) = default;
     
-    // Delete copy operations
+    // Eliminate possiblity of copying unique_ptr by deleting native copy constructor 
     Compartment(const Compartment&) = delete;
+
+    // Same but for assignment operator; cannot copy unique_ptr
     Compartment& operator=(const Compartment&) = delete;
 };
 

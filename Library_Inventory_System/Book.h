@@ -18,7 +18,7 @@ public:
          const string& id, 
          const string& crDate);
     
-    unique_ptr<Item>CreateItem() const override;
+    //unique_ptr<Item>CreateItem() const override;
     void display(ostream& os) const override;
 };
 
