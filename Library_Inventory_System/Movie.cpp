@@ -1,8 +1,11 @@
 #include "Movie.h"
 
 
-Movie::Movie(const string& descript, const string& id,
-             const string& title, const string& director, const vector<string>& mainActors)
+Movie::Movie(const string& title, 
+             const string& director,
+             const string& id, 
+             const string& descript, 
+             const vector<string>& mainActors)
     : Item("Movie", descript, id)
 {
     this->title      = title;

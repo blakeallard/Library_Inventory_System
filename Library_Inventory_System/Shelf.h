@@ -7,7 +7,6 @@
 using std::make_unique, std::unique_ptr, std::ostream, std::out_of_range;
 
 
-
 // Forward declaration
 class Item;
 
@@ -18,6 +17,7 @@ public:
     static const int NUM_COMPARTS = 15;
     Shelf();
     Compartment& operator[](int index);
+    const Compartment& operator[](int index) const;
 
 private:
     Compartment compartments[NUM_COMPARTS];

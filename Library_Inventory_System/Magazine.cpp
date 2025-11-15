@@ -1,7 +1,7 @@
 #include "Magazine.h"
 
-Magazine::Magazine(const string& descript, const string& id,
-                   int edition, const string& artTitle)
+Magazine::Magazine(const string& artTitle, const string& id,
+                   const string& descript, int edition)
     : Item("Magazine", descript, id)
 {
     this->edition  = edition;

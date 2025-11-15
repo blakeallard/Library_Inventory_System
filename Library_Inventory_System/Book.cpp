@@ -1,7 +1,7 @@
 #include "Book.h"
 
-Book::Book(const string& descript, const string& id,
-           const string& title, const string& author, const string& crDate)
+Book::Book(const string& title, const string& author,
+           const string& descript, const string& id, const string& crDate)
     : Item("Book", descript, id)
 {
     this->title  = title;

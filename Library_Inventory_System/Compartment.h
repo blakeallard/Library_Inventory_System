@@ -29,7 +29,6 @@ public:
     bool CheckOut(const string& checkedOutBy, const string& dueDate);
     bool IsCheckedOut() const;
     bool IsEmpty() const;
-    bool isValidID(const string& id) const;
     void swap(Compartment& otherItem);
     ~Compartment();
 };

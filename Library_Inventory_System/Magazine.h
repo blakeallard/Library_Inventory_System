@@ -10,8 +10,10 @@ private:
     string artTitle{};
 
 public:
-    Magazine(const string& descript, const string& id,
-             int edition, const string& artTitle);
+    Magazine(const string& artTitle, 
+             const string& id, 
+             const string& descript,
+             int edition);
 
     unique_ptr<Item> CreateItem() const override;
     void display(ostream& os) const override;

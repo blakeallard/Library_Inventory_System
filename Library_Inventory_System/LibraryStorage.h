@@ -13,22 +13,31 @@ private:
     vector<Shelf> shelves{};
 
 public:
-    static const int NUM_SHELVES = 12; // tentative depending on how many shelves
-    // Default constructor initializes shelves vector 
-    // with NUM_SHELVES Shelf objects
+    static const int NUM_SHELVES = 5;
+
     LibraryStorage();
 
-    // in order to add items to shelves, 
-    // must know which shelf index and compartment index
     bool AddItem(int shelfIndex, int compartmentIndex, unique_ptr<Item> item);
 
-
     bool CheckInItem(int shelfIndex, int compartmentIndex);
-    bool CheckOutItem(int shelfIndex, int compartmentIndex, const string& borrowerName, const string& dueDate);
-    void SwapItems(int shelfIndex1, int compartmentIndex1, int shelfIndex2, int compartmentIndex2);
+
+    bool CheckOutItem(int shelfIndex, 
+                      int compartmentIndex, 
+                const string& borrowerName, 
+                const string& dueDate);
+
+    void SwapItems(int shelfIndex1, int compartmentIndex1, 
+                   int shelfIndex2, int compartmentIndex2);
+
     void PrintStorage() const;
+
     void PrintCheckedOutItems() const;
+
     Shelf& operator[](int index);
+    
+    const Shelf& operator[](int index) const;
+    
+    void InitSampleData(LibraryStorage &libraryInventory);
 };
 
 #endif  // FILENAME_H

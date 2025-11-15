@@ -14,8 +14,11 @@ private:
     vector<string> mainActors{};
 
 public:
-    Movie(const string& descript, const string& id,
-          const string& title, const string& director, const vector<string>& mainActors);
+    Movie(const string& title, 
+          const string& director,
+          const string& id, 
+          const string& descript, 
+          const vector<string>& mainActors);
     
     unique_ptr<Item> CreateItem() const override;
 

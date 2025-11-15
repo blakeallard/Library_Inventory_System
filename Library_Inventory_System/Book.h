@@ -12,8 +12,11 @@ private:
     string crDate{};
 
 public:
-    Book(const string& descript, const string& id,
-         const string& title, const string& author, const string& crDate);
+    Book(const string& title, 
+         const string& author,
+         const string& descript, 
+         const string& id, 
+         const string& crDate);
     
     unique_ptr<Item>CreateItem() const override;
     void display(ostream& os) const override;
