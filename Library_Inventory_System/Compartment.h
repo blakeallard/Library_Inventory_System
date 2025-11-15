@@ -33,13 +33,14 @@ public:
     bool IsEmpty() const;
 
     void swap(Compartment& otherItem);
+    ~Compartment();
+    
     Compartment(Compartment&& other) = default;
     Compartment& operator=(Compartment&& other) = default;
     
     // Delete copy operations
     Compartment(const Compartment&) = delete;
     Compartment& operator=(const Compartment&) = delete;
-    ~Compartment();
 };
 
 #endif  // FILENAME_H

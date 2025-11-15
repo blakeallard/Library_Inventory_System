@@ -23,10 +23,10 @@ void Menu::AddItemMenu(LibraryStorage& libraryInventory)
 
 void Menu::CheckOutItemMenu(LibraryStorage& libraryInventory)
 {
-    int shelfIndex = GetValidShelfIndex();
+    int shelfIndex       = GetValidShelfIndex();
     int compartmentIndex = GetValidCompartmentIndex();
-    string yourName = GetValidName();
-    string dueDate = GetValidDate();
+    string yourName      = GetValidName();
+    string dueDate       = GetValidDate();
     
     libraryInventory.CheckOutItem(shelfIndex, compartmentIndex, yourName, dueDate);
 }

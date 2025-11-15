@@ -5,8 +5,12 @@
 
 LibraryStorage::LibraryStorage()
 {
-    shelves.resize(NUM_SHELVES);
+    for (int i = 0; i < NUM_SHELVES; i++) 
+    {
+        shelves.push_back(Shelf());
+    }
 }
+
 
 // to add items to shelves, 
 // must know shelf index and compartment index

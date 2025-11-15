@@ -6,13 +6,13 @@
 using std::cout, std::cin, std::endl, std::getline;
 enum MenuOptions
 {
-    ADD_ITEM        = 1,
-    CHECK_OUT_ITEM  = 2,
-    CHECK_IN_ITEM   = 3,
-    PRINT_STORAGE   = 4,
-    PRINT_CHECKEDOUT= 5,
-    SWAP_ITEMS      = 6,
-    EXIT            = 7
+    ADD_ITEM         = 1,
+    CHECK_OUT_ITEM   = 2,
+    CHECK_IN_ITEM    = 3,
+    PRINT_STORAGE    = 4,
+    PRINT_CHECKEDOUT = 5,
+    SWAP_ITEMS       = 6,
+    EXIT             = 7
 };
 
 class Menu
