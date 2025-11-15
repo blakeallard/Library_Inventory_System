@@ -23,13 +23,22 @@ public:
     void AddItem(unique_ptr<Item> newItem);
     unique_ptr<Item> RemoveItem();
     const Item* GetItem() const;
+    
     string getCheckedOutBy() const;
     string getDueDate() const;
+
     bool CheckIn();
     bool CheckOut(const string& checkedOutBy, const string& dueDate);
     bool IsCheckedOut() const;
     bool IsEmpty() const;
+
     void swap(Compartment& otherItem);
+    Compartment(Compartment&& other) = default;
+    Compartment& operator=(Compartment&& other) = default;
+    
+    // Delete copy operations
+    Compartment(const Compartment&) = delete;
+    Compartment& operator=(const Compartment&) = delete;
     ~Compartment();
 };
 

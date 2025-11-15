@@ -110,3 +110,8 @@ void Compartment::swap(Compartment& otherItem)
     std::swap(this->checkedOutBy, otherItem.checkedOutBy);
     std::swap(this->dueDate, otherItem.dueDate);
 }
+
+Compartment::~Compartment()
+{
+    
+}

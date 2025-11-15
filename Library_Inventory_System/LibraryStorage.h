@@ -21,10 +21,8 @@ public:
 
     bool CheckInItem(int shelfIndex, int compartmentIndex);
 
-    bool CheckOutItem(int shelfIndex, 
-                      int compartmentIndex, 
-                const string& borrowerName, 
-                const string& dueDate);
+    bool CheckOutItem(int shelfIndex, int compartmentIndex, 
+        const string& borrowerName, const string& dueDate);
 
     void SwapItems(int shelfIndex1, int compartmentIndex1, 
                    int shelfIndex2, int compartmentIndex2);

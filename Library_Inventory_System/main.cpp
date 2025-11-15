@@ -32,9 +32,6 @@ int main()
                 cout << "Check In Item selected.\n";
                 Menu::CheckInItemMenu(libraryInventory);
                 break;
-            case PRINT_ITEMS:
-                cout << "Print Items selected.\n";
-                break;
             case PRINT_STORAGE:
                 cout << "Print Storage selected.\n";
                 libraryInventory.PrintStorage();
@@ -45,6 +42,7 @@ int main()
                 break;
             case SWAP_ITEMS:
                 cout << "Swap Items selected.\n";
+                Menu::SwapItemsMenu(libraryInventory);
                 break;
             case EXIT:
                 cout << "Exiting the program.\n";
@@ -52,10 +50,7 @@ int main()
             default:
                 cout << "Invalid choice. Please try again.\n";
         }
-
-        
-    } while (choice != 8);
-    
+    } while (choice != EXIT);
 
     return 0;
 }

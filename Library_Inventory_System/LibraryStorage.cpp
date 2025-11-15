@@ -97,12 +97,79 @@ void LibraryStorage::SwapItems(int shelfIndex1, int compartmentIndex1, int shelf
 
 void LibraryStorage::PrintStorage() const
 {
+    cout << "\n========== LIBRARY STORAGE ==========\n";
 
+        for (int s = 0; s < shelves.size(); s++)
+        {
+            cout << "\n--- Shelf " << s << " ---\n";
+
+            for (int c = 0; c < Shelf::NUM_COMPARTS; ++c)
+            {
+                const Compartment& comp = shelves[s][c];
+
+                cout << "  [" << c << "] ";
+
+                if (comp.IsEmpty())
+                {
+                    cout << "(empty)\n";
+                    continue;
+                }
+
+                const Item* item = comp.GetItem();
+                cout << item->getName() << "  (ID: " << item->getID() << ")";
+
+                if (comp.IsCheckedOut())
+                {
+                    cout << "  -- CHECKED OUT by " 
+                         << comp.getCheckedOutBy()
+                         << ", due " << comp.getDueDate();
+                }
+                else
+                {
+                    cout << "  -- Available";
+                }
+
+                cout << "\n";
+            }
+        }
+
+        cout << "=====================================\n\n";
 }
 
 void LibraryStorage::PrintCheckedOutItems() const
 {
+    cout << "\n========== CHECKED OUT ITEMS ==========\n";
 
+        bool foundAny = false;
+
+        for (int s = 0; s < shelves.size(); ++s)
+        {
+            for (int c = 0; c < Shelf::NUM_COMPARTS; ++c)
+            {
+                const Compartment& comp = shelves[s][c];
+
+                if (!comp.IsEmpty() && comp.IsCheckedOut())
+                {
+                    foundAny = true;
+
+                    const Item* item = comp.GetItem();
+
+                    cout << "- " << item->getName()
+                        << "  (ID: "         << item->getID()          << ")\n"
+                        << "    Borrower: "  << comp.getCheckedOutBy() << "\n"
+                        << "    Due Date: "  << comp.getDueDate()      << "\n"
+                        << "    Shelf: "     << s 
+                        << ", Compartment: " << c                      << "\n\n";
+                }
+            }
+        }
+
+        if (!foundAny)
+        {
+            cout << "No items are currently checked out.\n";
+        }
+
+        cout << "=======================================\n\n";
 }
 
 Shelf& LibraryStorage::operator[](int index)
@@ -114,7 +181,7 @@ Shelf& LibraryStorage::operator[](int index)
     return shelves[index];
 }
 
-void InitSampleData(LibraryStorage &libraryInventory)
+void LibraryStorage::InitSampleData(LibraryStorage &libraryInventory)
 {
     libraryInventory.AddItem(0, 0, make_unique<Book>("The Great Gatsby", 
                                                      "F. Scott Fitzgerald", 

@@ -15,8 +15,11 @@ class Shelf
 {
 public:
     static const int NUM_COMPARTS = 15;
+
     Shelf();
+
     Compartment& operator[](int index);
+
     const Compartment& operator[](int index) const;
 
 private:
