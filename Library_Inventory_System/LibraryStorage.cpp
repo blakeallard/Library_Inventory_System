@@ -2,6 +2,7 @@
 #include "Book.h"
 #include "Movie.h"
 #include "Magazine.h"
+using std::out_of_range, std::move, std::endl, std::make_unique;
 
 LibraryStorage::LibraryStorage()
 {
@@ -121,6 +122,8 @@ void LibraryStorage::PrintStorage() const
 
                 const Item* item = comp.GetItem();
                 cout << item->getName() << "  (ID: " << item->getID() << ")";
+                cout << " - Title: " << item->GetTitle();
+                
 
                 if (comp.IsCheckedOut())
                 {
@@ -194,141 +197,221 @@ const Shelf& LibraryStorage::operator[](int index) const
     return shelves[index];
 }
 
-void LibraryStorage::InitSampleData(LibraryStorage &libraryInventory)
+void LibraryStorage::InitSampleData()
 {
-    libraryInventory.AddItem(0, 0, make_unique<Book>("The Great Gatsby", 
+    AddItem(0, 0, make_unique<Book>("The Great Gatsby", 
                                                      "F. Scott Fitzgerald", 
                                                      "A novel set in the Jazz Age", 
                                                      "B001", 
                                                      "1925"));
-    libraryInventory.AddItem(0, 1, make_unique<Book>("1984", 
+    AddItem(0, 1, make_unique<Book>("1984", 
                                                      "George Orwell", 
                                                      "Dystopian social science fiction novel", 
                                                      "B002", 
                                                      "1949"));
-    libraryInventory.AddItem(0, 2, make_unique<Book>("To Kill a Mockingbird", 
+    AddItem(0, 2, make_unique<Book>("To Kill a Mockingbird", 
                                                      "Harper Lee", 
                                                      "Novel about racial injustice", 
                                                      "B003", 
                                                      "1960"));
-    libraryInventory.AddItem(0, 3, make_unique<Book>("The Catcher in the Rye", 
+    AddItem(0, 3, make_unique<Book>("The Catcher in the Rye", 
                                                      "J.D. Salinger", 
                                                      "Story about adolescent alienation", 
                                                      "B004", 
                                                      "1951"));
-    libraryInventory.AddItem(0, 4, make_unique<Book>("Pride and Prejudice", 
+    AddItem(0, 4, make_unique<Book>("Pride and Prejudice", 
                                                      "Jane Austen", 
                                                      "Romantic novel of manners", 
                                                      "B005", 
                                                      "1813"));
-    libraryInventory.AddItem(0, 5, make_unique<Book>("Eragon", 
+    AddItem(0, 5, make_unique<Book>("Eragon", 
                                                      "Christopher Paolini", 
                                                      "Fantasy novel about a young dragon rider", 
                                                      "B006", 
                                                      "2002"));
-    libraryInventory.AddItem(0, 6, make_unique<Book>("Fahrenheit 451", 
+    AddItem(0, 6, make_unique<Book>("Fahrenheit 451", 
                                                      "Ray Bradbury", 
                                                      "Dystopian novel about book burning", 
                                                      "B007", 
                                                      "1953"));
-    libraryInventory.AddItem(0, 7, make_unique<Book>("Moby Dick", 
+    AddItem(0, 7, make_unique<Book>("Moby Dick", 
                                                      "Herman Melville", 
                                                      "Epic tale of a sea captain's obsession", 
                                                      "B008", 
                                                      "1851"));
-    libraryInventory.AddItem(0, 8, make_unique<Book>("War and Peace", 
+    AddItem(0, 8, make_unique<Book>("War and Peace", 
                                                      "Leo Tolstoy", 
                                                      "Historical novel set during the Napoleonic Wars", 
                                                      "B009", 
                                                      "1869"));
-    libraryInventory.AddItem(0, 9, make_unique<Book>("The Odyssey", 
+    AddItem(0, 9, make_unique<Book>("The Odyssey", 
                                                       "Homer", 
                                                       "Ancient Greek epic poem", 
                                                       "B010", 
                                                       "8th Century BC"));
-    libraryInventory.AddItem(0, 10, make_unique<Movie>("The Matrix", 
+    AddItem(0, 10, make_unique<Movie>("The Matrix", 
                                                       "The Wachowskis", 
                                                       "M002", 
                                                       "A hacker discovers the nature of reality", 
                                                       vector<string>{"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"}));
-    libraryInventory.AddItem(0, 11, make_unique<Movie>("The Godfather", 
+    AddItem(0, 11, make_unique<Movie>("The Godfather", 
                                                       "Francis Ford Coppola", 
                                                       "M003", 
                                                       "Crime film about a mafia family", 
                                                       vector<string>{"Marlon Brando", "Al Pacino", "James Caan"}));
-    libraryInventory.AddItem(0, 12, make_unique<Movie>("Titanic", 
+    AddItem(0, 12, make_unique<Movie>("Titanic", 
                                                       "James Cameron", 
                                                       "M004", 
                                                       "Romantic drama set on the ill-fated RMS Titanic", 
                                                       vector<string>{"Leonardo DiCaprio", "Kate Winslet"}));
-    libraryInventory.AddItem(0, 13, make_unique<Movie>("Avatar", 
+    AddItem(0, 13, make_unique<Movie>("Avatar", 
                                                       "James Cameron", 
                                                       "M005", 
                                                       "Science fiction epic set on the alien world of Pandora", 
                                                       vector<string>{"Sam Worthington", "Zoe Saldana", "Sigourney Weaver"}));
-    libraryInventory.AddItem(0, 14, make_unique<Movie>("Jurassic Park", 
+    AddItem(0, 14, make_unique<Movie>("Jurassic Park", 
                                                       "Steven Spielberg", 
                                                       "M006", 
                                                       "Adventure film about a dinosaur theme park", 
                                                       vector<string>{"Sam Neill", "Laura Dern", "Jeff Goldblum"}));
-    libraryInventory.AddItem(1, 0, make_unique<Movie>("The Lion King", 
+    AddItem(1, 0, make_unique<Movie>("The Lion King", 
                                                       "Roger Allers and Rob Minkoff", 
                                                       "M007", 
                                                       "Animated musical about a lion cub's journey to adulthood", 
                                                       vector<string>{"Matthew Broderick", "Jeremy Irons", "James Earl Jones"}));
-    libraryInventory.AddItem(1, 1, make_unique<Movie>("The Incredibles", 
+    AddItem(1, 1, make_unique<Movie>("The Incredibles", 
                                                       "Brad Bird", 
                                                       "M008", 
                                                       "Animated film about a family of superheroes", 
                                                       vector<string>{"Craig T. Nelson", "Holly Hunter", "Samuel L. Jackson"}));
-    libraryInventory.AddItem(1, 2, make_unique<Movie>("Finding Nemo", 
+    AddItem(1, 2, make_unique<Movie>("Finding Nemo", 
                                                       "Andrew Stanton", 
                                                       "M009", 
                                                       "Animated adventure about a clownfish searching for his son", 
                                                       vector<string>{"Albert Brooks", "Ellen DeGeneres", "Alexander Gould"}));
-    libraryInventory.AddItem(1, 3, make_unique<Movie>("Toy Story", 
+    AddItem(1, 3, make_unique<Movie>("Toy Story", 
                                                       "John Lasseter", 
                                                       "M010", 
                                                       "Animated film about toys coming to life", 
                                                       vector<string>{"Tom Hanks", "Tim Allen", "Don Rickles"}));
-    libraryInventory.AddItem(1, 4, make_unique<Magazine>("Tech Today", 
+    AddItem(1, 4, make_unique<Magazine>("Tech Today", 
                                                          "MG001", 
                                                          "Latest updates in technology", 
                                                          45));
-    libraryInventory.AddItem(1, 5, make_unique<Magazine>("Health Weekly", 
+    AddItem(1, 5, make_unique<Magazine>("Health Weekly", 
                                                          "MG002", 
                                                          "Your guide to healthy living", 
                                                          30));
-    libraryInventory.AddItem(1, 6, make_unique<Magazine>("Travel Explorer", 
+    AddItem(1, 6, make_unique<Magazine>("Travel Explorer", 
                                                          "MG003", 
                                                          "Discover new travel destinations", 
                                                          22));
-    libraryInventory.AddItem(1, 7, make_unique<Magazine>("Foodie Fun", 
+    AddItem(1, 7, make_unique<Magazine>("Foodie Fun", 
                                                          "MG004", 
                                                          "Delicious recipes and food trends", 
                                                          18));
-    libraryInventory.AddItem(1, 8, make_unique<Magazine>("Sports Central", 
+    AddItem(1, 8, make_unique<Magazine>("Sports Central", 
                                                          "MG005", 
                                                          "All about the world of sports", 
                                                          55));
-    libraryInventory.AddItem(1, 9, make_unique<Magazine>("Art Monthly", 
+    AddItem(1, 9, make_unique<Magazine>("Art Monthly", 
                                                          "MG006", 
                                                          "Exploring the world of art", 
                                                          12));
-    libraryInventory.AddItem(1, 10, make_unique<Magazine>("Science Digest", 
+    AddItem(1, 10, make_unique<Magazine>("Science Digest", 
                                                           "MG007", 
                                                           "Latest scientific discoveries", 
                                                           40));
-    libraryInventory.AddItem(1, 11, make_unique<Magazine>("Fashion Forward", 
+    AddItem(1, 11, make_unique<Magazine>("Fashion Forward", 
                                                           "MG008", 
                                                           "Trends in the fashion industry", 
                                                           27));
-    libraryInventory.AddItem(1, 12, make_unique<Magazine>("Gaming World", 
+    AddItem(1, 12, make_unique<Magazine>("Gaming World", 
                                                           "MG009", 
                                                           "All about video games", 
                                                           33));
-    libraryInventory.AddItem(1, 13, make_unique<Magazine>("Movie Magic", 
+    AddItem(1, 13, make_unique<Magazine>("Movie Magic", 
                                                           "MG010", 
                                                           "Behind the scenes of Hollywood", 
                                                           29));
+    AddItem(1, 14, make_unique<Movie>("Inception", 
+                                                          "Christopher Nolan", 
+                                                          "M011", 
+                                                          "A thief who steals corporate secrets through dream-sharing technology", 
+                                                          vector<string>{"Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"}));
+    AddItem(2, 0, make_unique<Movie>("The Matrix", 
+                                                          "The Wachowskis", 
+                                                          "M012", 
+                                                          "A hacker discovers the nature of reality", 
+                                                          vector<string>{"Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"}));
+    AddItem(2, 1, make_unique<Movie>("Trainspotting", 
+                                                          "Danny Boyle", 
+                                                          "M013", 
+                                                          "A group of heroin addicts in Edinburgh", 
+                                                          vector<string>{"Ewan McGregor", "Ewen Bremner", "Jonny Lee Miller"}));
+    AddItem(2, 2, make_unique<Movie>("The Godfather", 
+                                                          "Francis Ford Coppola", 
+                                                          "M014", 
+                                                          "Crime film about a mafia family", 
+                                                          vector<string>{"Marlon Brando", "Al Pacino", "James Caan"}));
+    AddItem(2, 3, make_unique<Movie>("Pulp Fiction", 
+                                                          "Quentin Tarantino", 
+                                                          "M015", 
+                                                          "Interconnected stories of crime in Los Angeles", 
+                                                          vector<string>{"John Travolta", "Uma Thurman", "Samuel L. Jackson"}));
+    AddItem(2, 4, make_unique<Movie>("The Dark Knight", 
+                                                          "Christopher Nolan", 
+                                                          "M016", 
+                                                          "Batman faces off against the Joker", 
+                                                          vector<string>{"Christian Bale", "Heath Ledger", "Aaron Eckhart"}));
+    AddItem(2, 5, make_unique<Movie>("Forrest Gump", 
+                                                          "Robert Zemeckis", 
+                                                          "M017", 
+                                                          "The life journey of Forrest Gump", 
+                                                          vector<string>{"Tom Hanks", "Robin Wright", "Gary Sinise"}));
+    AddItem(2, 6, make_unique<Movie>("The Shawshank Redemption", 
+                                                          "Frank Darabont", 
+                                                          "M018",                                                          
+                                                          "Two imprisoned men bond over a number of years", 
+                                                          vector<string>{"Tim Robbins", "Morgan Freeman", "Bob Gunton"}));
+    AddItem(2, 7, make_unique<Movie>("Fight Club", 
+                                                          "David Fincher", 
+                                                          "M019", 
+                                                          "An insomniac office worker forms an underground fight club", 
+                                                          vector<string>{"Brad Pitt", "Edward Norton", "Helena Bonham Carter"}));
+    AddItem(2, 8, make_unique<Movie>("The Social Network", 
+                                                          "David Fincher", 
+                                                          "M020", 
+                                                          "The founding of Facebook", 
+                                                          vector<string>{"Jesse Eisenberg", "Andrew Garfield", "Justin Timberlake"})); 
+    AddItem(2, 9, make_unique<Movie>("Gladiator", 
+                                                          "Ridley Scott", 
+                                                          "M021", 
+                                                          "A former Roman General seeks revenge", 
+                                                          vector<string>{"Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"}));
+    AddItem(2, 10, make_unique<Movie>("The Departed", 
+                                                          "Martin Scorsese", 
+                                                          "M022", 
+                                                          "An undercover cop and a mole in the police attempt to identify each other", 
+                                                          vector<string>{"Leonardo DiCaprio", "Matt Damon", "Jack Nicholson"}));
+    AddItem(2, 11, make_unique<Book>("Harry Potter and the Half-Blood Prince", 
+                                                     "J.K. Rowling", 
+                                                     "The sixth book in the Harry Potter series", 
+                                                     "B011", 
+                                                     "2005"));
+    AddItem(2, 12, make_unique<Book>("Dracula", 
+                                                     "Bram Stoker", 
+                                                     "Gothic horror novel about the vampire Count Dracula", 
+                                                     "B012", 
+                                                     "1897"));
+    AddItem(2, 13, make_unique<Book>("Percy Jackson & The Olympians: The Lightning Thief", 
+                                                     "Rick Riordan", 
+                                                     "Fantasy novel about a modern-day demigod", 
+                                                     "B013", 
+                                                     "2005"));
+    AddItem(2, 14, make_unique<Book>("Young Goodman Brown", 
+                                                     "Nathaniel Hawthorne", 
+                                                     "Short story about a Puritan's encounter with the devil", 
+                                                     "B014", 
+                                                     "1835"));
 }

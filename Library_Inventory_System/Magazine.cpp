@@ -16,7 +16,6 @@ void Magazine::display(ostream& os) const
     os << "Article Title: " << artTitle << "\n";
 }
 
-// unique_ptr<Item> Magazine::CreateItem() const
-// {
-//     return make_unique<Magazine>(*this);
-// }
+string Magazine::GetType() const { return "Magazine"; }
+
+string Magazine::GetTitle() const { return artTitle; }

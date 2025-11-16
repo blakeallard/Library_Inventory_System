@@ -4,10 +4,10 @@
 #include <string>
 #include <memory>
 #include <utility>
-using std::string, std::make_unique, std::unique_ptr, std::endl;
+using std::string, std::unique_ptr;
 
 
-// Forward declaration
+// Foward declaration
 class Item;
 
 

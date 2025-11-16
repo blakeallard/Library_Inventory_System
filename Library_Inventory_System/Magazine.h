@@ -2,7 +2,6 @@
 #define MAGAZINE_H_
 #include "Item.h"
 
-
 class Magazine : public Item 
 {
 private:
@@ -15,8 +14,10 @@ public:
              const string& descript,
              int edition);
 
-    //unique_ptr<Item> CreateItem() const override;
     void display(ostream& os) const override;
+
+    string GetType()  const override;
+    string GetTitle() const override;
 };
 
 #endif  // MAGAZINE_H_

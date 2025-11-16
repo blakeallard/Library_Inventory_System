@@ -18,7 +18,7 @@ void Menu::DisplayMenu()
 
 void Menu::AddItemMenu(LibraryStorage& libraryInventory)
 {
-    // Implementation for adding an item
+    
 }
 
 void Menu::CheckOutItemMenu(LibraryStorage& libraryInventory)

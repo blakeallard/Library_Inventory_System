@@ -4,8 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-using std::cout, std::vector, std::out_of_range, std::move, std::unique_ptr, std::endl;
-
+using std::cout, std::vector, std::unique_ptr;
 
 class LibraryStorage 
 {
@@ -13,7 +12,7 @@ private:
     vector<Shelf> shelves{};
 
 public:
-    static const int NUM_SHELVES = 5;
+    static const int NUM_SHELVES = 3;
 
     LibraryStorage();
 
@@ -35,7 +34,7 @@ public:
     
     const Shelf& operator[](int index) const;
     
-    void InitSampleData(LibraryStorage &libraryInventory);
+    void InitSampleData();
 };
 
 #endif  // FILENAME_H

@@ -34,7 +34,6 @@ void Movie::display(ostream& os) const
     os << "\n";
 }
 
-// unique_ptr<Item> Movie::CreateItem() const
-// {
-//     return make_unique<Movie>(*this);
-// }
+string Movie::GetType() const { return "Movie"; }
+
+string Movie::GetTitle() const { return title; }

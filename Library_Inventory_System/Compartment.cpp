@@ -1,5 +1,6 @@
 #include "Compartment.h"
 #include "Item.h"
+using std::cout, std::endl, std::make_unique;
 
 
 Compartment::Compartment()
@@ -111,7 +112,4 @@ void Compartment::swap(Compartment& otherItem)
     std::swap(this->dueDate, otherItem.dueDate);
 }
 
-Compartment::~Compartment()
-{
-    
-}
+Compartment::~Compartment() = default;

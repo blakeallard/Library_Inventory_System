@@ -11,7 +11,7 @@ int main()
     int choice{};
     
     // Create items
-    libraryInventory.InitSampleData(libraryInventory);
+    libraryInventory.InitSampleData();
     
     do
     {
@@ -23,6 +23,7 @@ int main()
         {
             case ADD_ITEM:
                 cout << "Add Item selected.\n";
+                Menu::AddItemMenu(libraryInventory);
                 break;
             case CHECK_OUT_ITEM:
                 cout << "Check Out Item selected.\n";

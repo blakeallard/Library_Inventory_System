@@ -1,10 +1,8 @@
 #ifndef MOVIE_H_
 #define MOVIE_H_ 
-
 #include "Item.h"
-#include <string>
 #include <vector>
-using std::string, std::vector;
+using std::vector;
 
 class Movie : public Item
 {
@@ -20,9 +18,10 @@ public:
           const string& descript, 
           const vector<string>& mainActors);
     
-    //unique_ptr<Item> CreateItem() const override;
+    void display(ostream& os) const override;
 
-    void display(ostream& os) const override; 
+    string GetType()  const override;
+    string GetTitle() const override;
 };
 
 #endif  // FILENAME_H

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-using std::string, std::ostream, std::unique_ptr, std::make_unique, std::cout;
+using std::string, std::ostream, std::unique_ptr;
 
 class Item 
 {
@@ -21,7 +21,9 @@ public:
     void   setID(const string& id);
     string getID() const;
 
-    // virtual unique_ptr<Item> CreateItem() const = 0;
+    virtual string GetType()  const = 0;
+    virtual string GetTitle() const = 0;
+
     virtual void display(ostream& os) const;
     virtual ~Item();
 

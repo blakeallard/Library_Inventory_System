@@ -7,17 +7,13 @@ Item::Item(const string& name, const string& descript, const string& id)
     this->id       = id;
 }
 
-//void Item::setName(const string& name) { this->name = name; }
-
 string Item::getName() const { return name; }
-
-//void Item::setDescript(const string& descript) { this->descript = descript; }
 
 string Item::getDescript() const { return descript; }
 
-//void Item::setID(const string& id) { this->id = id; }
-
 string Item::getID() const { return id; }
+
+
 
 void Item::display(ostream& os) const
 {

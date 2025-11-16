@@ -4,11 +4,8 @@
 #include <memory>
 #include <iostream>
 #include <stdexcept>
-using std::make_unique, std::unique_ptr, std::ostream, std::out_of_range;
-
-
-// Forward declaration
-class Item;
+#include <array>
+using std::array;
 
 
 class Shelf
@@ -23,7 +20,7 @@ public:
     const Compartment& operator[](int index) const;
 
 private:
-    Compartment compartments[NUM_COMPARTS];
+    array<Compartment, NUM_COMPARTS> compartments;
 };
 
 #endif  // FILENAME_H

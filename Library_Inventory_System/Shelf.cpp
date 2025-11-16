@@ -1,5 +1,5 @@
 #include "Shelf.h"
-
+using std::out_of_range;
 
 Shelf::Shelf() {}
 
