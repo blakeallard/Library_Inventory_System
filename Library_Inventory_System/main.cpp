@@ -10,7 +10,7 @@ int main()
     LibraryStorage libraryInventory;
     int choice{};
     
-    // Create items
+    // Create sample data
     libraryInventory.InitSampleData();
     
     do
@@ -22,34 +22,34 @@ int main()
         switch (choice)
         {
             case ADD_ITEM:
-                cout << "Add Item selected.\n";
+                cout << "\nAdd Item selected.\n";
                 Menu::AddItemMenu(libraryInventory);
                 break;
             case CHECK_OUT_ITEM:
-                cout << "Check Out Item selected.\n";
+                cout << "\nCheck Out Item selected.\n";
                 Menu::CheckOutItemMenu(libraryInventory);
                 break;
             case CHECK_IN_ITEM:
-                cout << "Check In Item selected.\n";
+                cout << "\nCheck In Item selected.\n";
                 Menu::CheckInItemMenu(libraryInventory);
                 break;
             case PRINT_STORAGE:
-                cout << "Print Storage selected.\n";
+                cout << "\nPrint Storage selected.\n";
                 libraryInventory.PrintStorage();
                 break;
             case PRINT_CHECKEDOUT:
-                cout << "Print Checked Out Items selected.\n";
+                cout << "\nPrint Checked Out Items selected.\n";
                 libraryInventory.PrintCheckedOutItems();
                 break;
             case SWAP_ITEMS:
-                cout << "Swap Items selected.\n";
+                cout << "\nSwap Items selected.\n";
                 Menu::SwapItemsMenu(libraryInventory);
                 break;
             case EXIT:
-                cout << "Exiting the program.\n";
+                cout << "\nExiting the program.\n";
                 break;
             default:
-                cout << "Invalid choice. Please try again.\n";
+                cout << "\nInvalid choice. Please try again.\n";
         }
     } while (choice != EXIT);
 

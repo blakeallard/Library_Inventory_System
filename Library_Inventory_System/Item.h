@@ -14,10 +14,13 @@ protected:
 
 public:
     Item(const string& name, const string& descript, const string& id);
+    
     void   setName(const string& name);
     string getName() const; 
+
     void   setDescript(const string& descript);
     string getDescript() const;
+
     void   setID(const string& id);
     string getID() const;
 

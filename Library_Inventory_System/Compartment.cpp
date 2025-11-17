@@ -91,9 +91,15 @@ bool Compartment::CheckOut(const string& checkedOutBy, const string& dueDate)
 
     this->checkedOutBy = checkedOutBy;
     this->dueDate      = dueDate;
+
+    cout << "\nThank You " << checkedOutBy << "!\n";
+    cout << "You have successfully checked out the " 
+         << item->GetType()  << " titled \"" 
+         << item->GetTitle() << "\"\n\n"
+         << "We'll see you back on " << dueDate << "!\n\n";
+         
     return true;
 }
-
 
 bool Compartment::IsCheckedOut() const
 {

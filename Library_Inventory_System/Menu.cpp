@@ -2,6 +2,7 @@
 #include "Book.h"
 #include "Movie.h"
 #include "Magazine.h"
+using std::exception;
 
 void Menu::DisplayMenu()
 {
@@ -75,7 +76,25 @@ void Menu::CheckInItemMenu(LibraryStorage& libraryInventory)
 
 void Menu::SwapItemsMenu(LibraryStorage& libraryInventory)
 {
-    // Implementation for swapping items
+    cout << "Enter 1st Item's details: \n";
+
+    int shelfIndex1       = GetValidShelfIndex();
+    int compartmentIndex1 = GetValidCompartmentIndex();
+
+    cout << "Enter 2nd Item's details: \n";
+
+    int shelfIndex2       = GetValidShelfIndex();
+    int compartmentIndex2 = GetValidCompartmentIndex();
+
+    try
+    {
+        libraryInventory.SwapItems(shelfIndex1, compartmentIndex1, shelfIndex2, compartmentIndex2);
+    }
+    catch (const exception& e)
+    {
+        cout << "Error: " << e.what() << endl;
+    }
+    
 }
 
 int Menu::GetValidShelfIndex()
@@ -86,6 +105,8 @@ int Menu::GetValidShelfIndex()
     {
         cout << "Enter shelf index: ";
         cin  >> shelfIndex;
+        shelfIndex--;
+
         if (cin.fail())
         {
             cin.clear();
@@ -108,6 +129,8 @@ int Menu::GetValidCompartmentIndex()
     {
         cout << "Enter compartment index: ";
         cin  >> compartmentIndex;
+        compartmentIndex--;
+
         if (cin.fail())
         {
             cin.clear();
@@ -127,10 +150,11 @@ int Menu::GetValidCompartmentIndex()
 string Menu::GetValidName()
 {
     string yourName{};
-    bool validName = true;
+    bool validName = false;
 
     do
     {
+        validName = true;
         cout << "Enter your name: ";
         getline(cin, yourName);
 
@@ -148,11 +172,12 @@ string Menu::GetValidName()
                 {
                     cout << "Name can only contain alphabetic characters and spaces." << endl;
                     validName = false;
-                    break;
+                    break; 
                 }
             }
         }
     } while (!validName);
+
     return yourName;
 }
 
@@ -168,7 +193,7 @@ string Menu::GetValidDate()
         
         validDate = true;
         
-        // Check format
+        // Check date format
         if (dueDate.length() != 10 || dueDate[2] != '/' || dueDate[5] != '/')
         {
             cout << "Invalid date format. Please use MM/DD/YYYY." << endl;
@@ -176,27 +201,27 @@ string Menu::GetValidDate()
             continue;
         }
         
-        // Check if month digits are valid (positions 0 and 1)
+        // Check if month digits are valid
         if (dueDate[0] < '0' || dueDate[0] > '9' || dueDate[1] < '0' || dueDate[1] > '9') 
         {
             cout << "Invalid date. Month must be numbers.\n";
             validDate = false;
         }
-        // Check if day digits are valid (positions 3 and 4)
+        // Check if day digits are valid
         else if (dueDate[3] < '0' || dueDate[3] > '9' || dueDate[4] < '0' || dueDate[4] > '9') 
         {
             cout << "Invalid date. Day must be numbers.\n";
             validDate = false;
         }
-        // Check if year digits are valid (positions 6, 7, 8, 9)
+        // Check if year digits are valid *YYYY*
         else if (dueDate[6] < '0' || dueDate[6] > '9' || dueDate[7] < '0' || dueDate[7] > '9' ||
-                dueDate[8] < '0' || dueDate[8] > '9' || dueDate[9] < '0' || dueDate[9] > '9') 
+                 dueDate[8] < '0' || dueDate[8] > '9' || dueDate[9] < '0' || dueDate[9] > '9') 
         {
                     cout << "Invalid date. Year must be numbers.\n";
                     validDate = false;
         }
         
-        if (!validDate) continue;  // Skip stoi if digits invalid
+        if (!validDate) continue;  // Skip string to int if digits invalid
         
         // Convert to integers
         string monthStr = dueDate.substr(0, 2);
@@ -207,7 +232,7 @@ string Menu::GetValidDate()
         int day   = stoi(dayStr);
         int year  = stoi(yearStr);
         
-        // Validate ranges
+        // Validate date ranges
         if (month < 1 || month > 12)
         {
             cout << "Invalid month. Please enter a month between 01 and 12." << endl;

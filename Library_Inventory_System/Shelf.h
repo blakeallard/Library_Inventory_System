@@ -2,7 +2,6 @@
 #define SHELF_H_
 #include "Compartment.h"
 #include <memory>
-#include <iostream>
 #include <stdexcept>
 #include <array>
 using std::array;

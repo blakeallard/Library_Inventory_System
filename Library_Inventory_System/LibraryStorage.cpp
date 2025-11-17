@@ -2,7 +2,9 @@
 #include "Book.h"
 #include "Movie.h"
 #include "Magazine.h"
-using std::out_of_range, std::move, std::endl, std::make_unique;
+#include "Item.h"
+#include <iomanip>
+using std::out_of_range, std::move, std::endl, std::make_unique, std::invalid_argument;
 
 LibraryStorage::LibraryStorage()
 {
@@ -12,9 +14,8 @@ LibraryStorage::LibraryStorage()
     }
 }
 
-
 // to add items to shelves, 
-// must know shelf index and compartment index
+// need shelf index and compartment index
 bool LibraryStorage::AddItem(int shelfIndex, int compartmentIndex, unique_ptr<Item> item)
 {
     if (shelfIndex < 0 || shelfIndex >= shelves.size())
@@ -92,55 +93,113 @@ void LibraryStorage::SwapItems(int shelfIndex1, int compartmentIndex1, int shelf
 
     if (shelves[shelfIndex1][compartmentIndex1].IsEmpty() || shelves[shelfIndex2][compartmentIndex2].IsEmpty())
     {
-        cout << "Error: One or both compartments are empty, cannot swap items." << endl;
-        return;
+        throw invalid_argument("One or both compartments are empty, cannot swap!\n\n");
     }
+    cout << '\n';
+    cout << shelves[shelfIndex1][compartmentIndex1].GetItem()->GetTitle()
+         << " (Shelf " << shelfIndex1 + 1 << ", Compartment " << compartmentIndex1 + 1 << ")"
+         << " was successfully swapped with\n"
+         << shelves[shelfIndex2][compartmentIndex2].GetItem()->GetTitle()
+         << " (Shelf " << shelfIndex2 + 1 << ", Compartment " << compartmentIndex2 + 1 << ")"
+         << "!\n\n";
 
     shelves[shelfIndex1][compartmentIndex1].swap(shelves[shelfIndex2][compartmentIndex2]);
-
 }
 
 void LibraryStorage::PrintStorage() const
 {
-    cout << "\n========== LIBRARY STORAGE ==========\n";
+    const int NAME_W = 30;
+    const int ID_W = 10;
+    const int STATUS_W = 14;
+    const int BORROWER_W = 18;
+    const int DUE_W = 12;
 
-        for (int s = 0; s < shelves.size(); s++)
-        {
-            cout << "\n--- Shelf " << s << " ---\n";
+    cout << "\n========== LIBRARY STORAGE ==========\n\n";
 
-            for (int c = 0; c < Shelf::NUM_COMPARTS; ++c)
-            {
-                const Compartment& comp = shelves[s][c];
+    // Header
+    cout << std::left << std::setw(6) << "Shelf" << std::setw(6) << "Comp"
+         << std::setw(NAME_W) << "Name" << std::setw(ID_W) << "ID"
+         << std::setw(STATUS_W) << "Status" << std::setw(BORROWER_W)
+         << "Borrower" << std::setw(DUE_W) << "Due" << '\n';
 
-                cout << "  [" << c << "] ";
+    cout << string(6 + 6 + NAME_W + ID_W + STATUS_W + BORROWER_W + DUE_W, '-')
+         << '\n';
 
-                if (comp.IsEmpty())
-                {
-                    cout << "(empty)\n";
-                    continue;
-                }
+    for (int s = 0; s < shelves.size(); s++) {
+        for (int c = 0; c < Shelf::NUM_COMPARTS; ++c) {
+            const Compartment& comp = shelves[s][c];
 
-                const Item* item = comp.GetItem();
-                cout << item->getName() << "  (ID: " << item->getID() << ")";
-                cout << " - Title: " << item->GetTitle();
+            cout << std::left << std::setw(6) << s + 1 << std::setw(6) << c + 1;
+
+            if (comp.IsEmpty()) {
+                cout << std::setw(NAME_W) << "(empty)" << std::setw(ID_W) << ""
+                     << std::setw(STATUS_W) << "" << std::setw(BORROWER_W) << ""
+                     << std::setw(DUE_W) << "" << '\n';
+                continue;
+            }
+
+            const Item* item = comp.GetItem();
+            string name = item->GetTitle();
+            if ((int)name.size() > NAME_W - 1) {
+                name = name.substr(0, NAME_W - 4) + "...";
+            }
+
+            string status = comp.IsCheckedOut() ? "Checked out" : "Available";
+
+            cout << std::setw(NAME_W) << name << std::setw(ID_W)
+                 << item->getID() << std::setw(STATUS_W) << status;
+
+            if (comp.IsCheckedOut()) {
+                cout << std::setw(BORROWER_W) << comp.getCheckedOutBy()
+                     << std::setw(DUE_W) << comp.getDueDate();
+            } else {
+                cout << std::setw(BORROWER_W) << "" << std::setw(DUE_W) << "";
+            }
+
+            cout << '\n';
+        }
+    }
+
+    cout << "=====================================\n\n";
+    // cout << "\n========== LIBRARY STORAGE ==========\n";
+
+    //     for (int i = 0; i < shelves.size(); i++)
+    //     {
+    //         cout << "\n--- Shelf " << i << " ---\n";
+
+    //         for (int j = 0; j < Shelf::NUM_COMPARTS; j++)
+    //         {
+    //             const Compartment& comp = shelves[i][j];
+
+    //             cout << "  [" << j << "] ";
+
+    //             if (comp.IsEmpty())
+    //             {
+    //                 cout << "(empty)\n";
+    //                 continue;
+    //             }
+
+    //             const Item* item = comp.GetItem();
+    //             cout << item->getName() << "  (ID: " << item->getID() << ")";
+    //             cout << " - Title: " << item->GetTitle();
                 
 
-                if (comp.IsCheckedOut())
-                {
-                    cout << "  -- CHECKED OUT by " 
-                         << comp.getCheckedOutBy()
-                         << ", due " << comp.getDueDate();
-                }
-                else
-                {
-                    cout << "  -- Available";
-                }
+    //             if (comp.IsCheckedOut())
+    //             {
+    //                 cout << "  -- CHECKED OUT by " 
+    //                      << comp.getCheckedOutBy()
+    //                      << ", due " << comp.getDueDate();
+    //             }
+    //             else
+    //             {
+    //                 cout << "  -- Available";
+    //             }
 
-                cout << "\n";
-            }
-        }
+    //             cout << "\n";
+    //         }
+    //     }
 
-        cout << "=====================================\n\n";
+    //     cout << "=====================================\n\n";
 }
 
 void LibraryStorage::PrintCheckedOutItems() const
