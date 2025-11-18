@@ -17,7 +17,113 @@ void Menu::DisplayMenu() {
     std::cout << "Please select an option (1-7): ";
 }
 
-void Menu::AddItemMenu(LibraryStorage& libraryInventory) {}
+void Menu::AddItemMenu(LibraryStorage& libraryInventory)
+{
+    string descript;
+    string id;
+
+
+    cout << "Select item type to add:\n";
+    cout << "1. Book\n";
+    cout << "2. Movie\n";
+    cout << "3. Magazine\n";
+    cout << "Enter choice (1-3): ";
+
+    int itemTypeChoice{};
+    do
+    {
+        cin >> itemTypeChoice;
+        cin.ignore(10000, '\n');
+
+        if (itemTypeChoice < 1 || itemTypeChoice > 3)
+        {
+            cout << "Invalid choice. Please enter a number between 1 - 3: ";
+        }
+    } while (itemTypeChoice < 1 || itemTypeChoice > 3);
+
+    
+    cout << "Enter add location for the item:\n";
+    int shelfIndex       = GetValidShelfIndex();
+    int compartmentIndex = GetValidCompartmentIndex();
+
+    try
+    {
+        switch (itemTypeChoice)
+        {
+            case 1:
+                {
+                    cout << "Enter Book Details:\n";
+                    string title, author, crDate;
+
+                    cout << "Title: ";
+                    getline(cin, title);
+                    cout << "Author: ";
+                    getline(cin, author);
+                    cout << "Description: ";
+                    getline(cin, descript);
+                    cout << "ID: ";
+                    getline(cin, id);
+                    cout << "Creation Date: ";
+                    getline(cin, crDate);
+
+                    Book newItem(title, author, descript, id, crDate);
+                    libraryInventory.AddItem(shelfIndex, compartmentIndex, std::make_unique<Book>(newItem));
+                    break;
+                }
+            case 2:
+                {
+                    cout << "Enter Movie Details:\n";
+                    string title, director;
+                    int numActors;
+
+                    cout << "Title: ";
+                    getline(cin, title);
+                    cout << "Director: ";
+                    getline(cin, director);
+                    cout << "Description: ";
+                    getline(cin, descript);
+                    cout << "ID: ";
+                    getline(cin, id);
+                    cout << "Number of Main Actors: ";
+                    cin >> numActors;
+                    cin.ignore(10000, '\n');
+
+                    vector<string> mainActors;
+                    for (int i = 0; i < numActors; i++)
+                    {
+                        string actorName;
+                        cout << "Enter name of actor #" << (i + 1) << ": ";
+                        getline(cin, actorName);
+                        mainActors.push_back(actorName);
+                    }
+
+                    Movie newItem(title, director, id, descript, mainActors);
+                    libraryInventory.AddItem(shelfIndex, compartmentIndex, std::make_unique<Movie>(newItem));
+                    break;
+                }
+            case 3:
+                {
+                    cout << "Enter Magazine Details:\n";
+                    string artTitle;
+                    int edition;
+
+                    cout << "Article Title: ";
+                    getline(cin, artTitle);
+                    cout << "Edition: ";
+                    cin >> edition;
+                    cin.ignore(10000, '\n');
+
+                    Magazine newItem(artTitle, id, descript, edition);
+                    libraryInventory.AddItem(shelfIndex, compartmentIndex, std::make_unique<Magazine>(newItem));
+                    break;
+                }
+        }
+    }
+    catch (const exception& e)
+    {
+        cout << "Error: " << e.what() << endl;
+    }
+}
 
 void Menu::CheckOutItemMenu(LibraryStorage& libraryInventory) {
     int shelfIndex = GetValidShelfIndex();
