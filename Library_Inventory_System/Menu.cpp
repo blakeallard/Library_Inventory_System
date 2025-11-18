@@ -17,6 +17,7 @@ void Menu::DisplayMenu() {
     std::cout << "Please select an option (1-7): ";
 }
 
+// Function to handle adding an item by user input
 void Menu::AddItemMenu(LibraryStorage& libraryInventory)
 {
     string descript;

@@ -17,6 +17,7 @@ LibraryStorage::LibraryStorage() {
 
 // to add items to shelves,
 // need shelf index and compartment index
+// returns true if successful, false if compartment occupied
 bool LibraryStorage::AddItem(int shelfIndex, int compartmentIndex,
                              unique_ptr<Item> item) {
     if (shelfIndex < 0 || shelfIndex >= shelves.size()) {
