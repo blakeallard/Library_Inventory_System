@@ -136,42 +136,7 @@ void Menu::CheckOutItemMenu(LibraryStorage& libraryInventory) {
                                   dueDate);
 }
 
-void Menu::CheckInItemMenu(LibraryStorage& libraryInventory) {
-    int shelfIndex{};
-    int compartmentIndex{};
 
-    // shelf index validation
-    do {
-        cout << "Enter shelf index: ";
-        cin >> shelfIndex;
-        shelfIndex++;
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            shelfIndex = -1;
-        } else if (shelfIndex < 0 ||
-                   shelfIndex >= LibraryStorage::NUM_SHELVES) {
-            cout << "Invalid shelf index. Please try again." << endl;
-        }
-    } while (shelfIndex < 0 || shelfIndex >= LibraryStorage::NUM_SHELVES);
-
-    // compartment index validation
-    do {
-        cout << "Enter compartment index: ";
-        cin >> compartmentIndex;
-        compartmentIndex++;
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            compartmentIndex = -1;
-        } else if (compartmentIndex < 0 ||
-                   compartmentIndex >= Shelf::NUM_COMPARTS) {
-            cout << "Invalid compartment index. Please try again." << endl;
-        }
-    } while (compartmentIndex < 0 || compartmentIndex >= Shelf::NUM_COMPARTS);
-
-    libraryInventory.CheckInItem(shelfIndex, compartmentIndex);
-}
 
 void Menu::SwapItemsMenu(LibraryStorage& libraryInventory) {
     cout << "Enter 1st Item's details: \n";
