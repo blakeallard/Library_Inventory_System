@@ -136,6 +136,27 @@ void Menu::CheckOutItemMenu(LibraryStorage& libraryInventory) {
                                   dueDate);
 }
 
+void Menu::CheckInItemMenu(LibraryStorage& libraryInventory)
+{
+    int shelfIndex = GetValidShelfIndex();
+    int compartmentIndex = GetValidCompartmentIndex();
+
+    try
+    {
+        bool success = libraryInventory.CheckInItem(shelfIndex, compartmentIndex);
+
+        if (success)
+        {
+            cout << "\nItem at Shelf " << shelfIndex + 1
+                << ", Compartment " << compartmentIndex + 1
+                << " has been successfully checked in.\n\n";
+        }
+    }
+    catch (const std::exception& e)
+    {
+        cout << "Error: " << e.what() << endl;
+    }
+}
 
 
 void Menu::SwapItemsMenu(LibraryStorage& libraryInventory) {
